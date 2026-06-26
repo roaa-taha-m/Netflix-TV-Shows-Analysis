@@ -143,14 +143,14 @@ with tab2:
     popularity = st.slider(
         "Popularity",
         0.0,
-        6500.0,
+        10.0,
         5.0
     )
     
     vote_count = st.slider(
         "Vote Count",
         0.0,
-        25000.0,
+        10.0,
         5.0
     )
     
@@ -164,25 +164,25 @@ with tab2:
     day_of_week_added = date_added.weekday()
 
     input_df = pd.DataFrame({
-        'countries': [country],
+        'country_freq': [country],
         'release_year': [release_year],
         'genres': [genre],
         'language': [language],
         'popularity': [popularity],
         'vote_count': [vote_count],
-        'lead_actor': [lead_actor],
+        'lead_actor_freq': [lead_actor],
         'year_added': [year_added],
         'month_added': [month_added],
         'day_of_week_added': [day_of_week_added]
     })
 
-    input_df['countries'] = (
-        input_df['countries']
+    input_df['country_freq'] = (
+        input_df['country_freq']
         .map(freq_country)
         .fillna(0)
     )
-    input_df['lead_actor'] = (
-        input_df['lead_actor']
+    input_df['lead_actor_freq'] = (
+        input_df['lead_actor_freq']
         .map(freq_lead_actor)
         .fillna(0)
     )
