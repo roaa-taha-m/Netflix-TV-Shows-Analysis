@@ -24,7 +24,7 @@ if x:
     st.dataframe(df.head(6))
 
     
-col_name = st.sidebar.selectbox("Select Column", df.columns[3:11])
+col_name = st.sidebar.selectbox("Select Column", df.columns[3:10])
 col1, col2 = st.columns(2)
 
 with col1:
@@ -85,6 +85,8 @@ with tab1:
     top_countries.add_trace(go.Bar(x=popularity['country'], y = popularity['avg_popularity'], name='Popularity'), row=1, col=1)
     top_countries.add_trace(go.Bar(x=rating['country'], y = rating['avg_rating'], name='Rating'), row=1, col=2)
     st.plotly_chart(top_countries)
+    st.write("""The most popular shows come from countries with large populations like the Philippines and India, 
+             while the highly rated shows come from more culturally influential countries like Japan or the US.""")
     
     
     top = df['genres'].value_counts().head(10).index
@@ -102,6 +104,8 @@ with tab1:
     top_countries.add_trace(go.Bar(x=popularity['genres'], y = popularity['avg_popularity'], name='Popularity'), row=1, col=1)
     top_countries.add_trace(go.Bar(x=rating['genres'], y = rating['avg_rating'], name='Rating'), row=1, col=2)
     st.plotly_chart(top_countries)
+    st.write("""The most popular shows are usually non-fiction types that depict more realistic content,
+             while the highly rated shows lean more toward fiction.""")
 
 
 model = joblib.load('rfr_model.pkl')
